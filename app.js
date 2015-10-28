@@ -18,7 +18,7 @@ app.use(bodyParser.urlencoded({
 
 // app.use(controllers.index)
 
-app.use("/js", express.static(__dirname + "/client/app/"));
+app.use("/js", express.static(__dirname + "/client/"));
 
 // serve index.html for all remaining routes, in order to leave routing up to angular
 app.all("/*", (req, res, next) => {
