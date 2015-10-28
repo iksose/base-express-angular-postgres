@@ -1,8 +1,6 @@
-/// <reference path="../../typings/tsd.d.ts" />
-
 import {Component, FormBuilder, FORM_DIRECTIVES, Validators, ControlGroup, Inject, NgFor} from 'angular2/angular2';
-import {TodoModel} from './todo_model.ts';
-import {TodoService} from './todo_service.ts';
+import {TodoModel} from './todo_model';
+import {TodoService} from './todo_service';
 
 @Component({
     selector: 'todo',
@@ -11,20 +9,12 @@ import {TodoService} from './todo_service.ts';
     providers: [TodoService, FormBuilder],
     directives: [FORM_DIRECTIVES, NgFor]
 })
+@Inject(TodoService)
+@Inject(FormBuilder)
 export class TodoCmp {
-    todo: TodoModel;
-    todoForm: ControlGroup;
-    todoList: TodoModel[] = [];
+    constructor(){}
 
-    constructor(@Inject(TodoService) private _todoService: TodoService,
-                @Inject(FormBuilder) fb: FormBuilder) {
-
-        this.todoForm = fb.group({
-           "message": ["", Validators.required]
-        });
-    }
-
-    add(message: string):void {
+    add(message) {
         this.todo = new TodoModel(message);
 
         this._todoService
@@ -35,7 +25,7 @@ export class TodoCmp {
             });
     }
 
-    remove(id: number):void {
+    remove(id) {
         this._todoService
             .remove(id)
             .subscribe(id => {

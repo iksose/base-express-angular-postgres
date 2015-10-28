@@ -1,19 +1,11 @@
 <html>
 <head>
   <title>Angular 2 QuickStart</title>
-  <script src="https://code.angularjs.org/tools/system.js"></script>
-  <script src="https://code.angularjs.org/tools/typescript.js"></script>
-  <script src="https://code.angularjs.org/2.0.0-alpha.44/angular2.dev.js"></script>
+  <script src="/js/jspm_packages/system.js"></script>
+  <script src="js/config.js"></script>
   <script>
-    System.config({
-      transpiler: 'typescript',
-      typescriptOptions: {
-        emitDecoratorMetadata: true
-      }
-    });
-    System.import('/js/index.ts');
+    System.import('/js/index.js');
   </script>
-  <!-- <script src="/js/index.ts"></script> -->
 </head>
 
 <body>
