@@ -4,15 +4,17 @@ import {TodoService} from './todo_service';
 
 @Component({
     selector: 'todo',
+    hostInjector: [TodoService],
     templateUrl: './js/app/todo/todo.html',
     styleUrls: ['./js/app/todo/todo.css'],
     providers: [TodoService, FormBuilder],
     directives: [FORM_DIRECTIVES, NgFor]
 })
 @Inject(TodoService)
-@Inject(FormBuilder)
 export class TodoCmp {
-    constructor(){}
+    constructor(){
+      this.todoList = [];
+    }
 
     add(message) {
         this.todo = new TodoModel(message);
