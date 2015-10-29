@@ -20,6 +20,7 @@ System.config({
     "core-js": "npm:core-js@1.2.3",
     "reflect-metadata": "npm:reflect-metadata@0.1.2",
     "zone.js": "npm:zone.js@0.5.8",
+    "text": "github:systemjs/plugin-text@0.0.3",
     "github:jspm/nodelibs-assert@0.1.0": {
       "assert": "npm:assert@1.3.0"
     },

@@ -18,6 +18,7 @@ System.config({
     "babel-runtime": "npm:babel-runtime@5.8.29",
     "core-js": "npm:core-js@1.2.3",
     "reflect-metadata": "npm:reflect-metadata@0.1.2",
+    "text": "github:systemjs/plugin-text@0.0.3",
     "zone.js": "npm:zone.js@0.5.8",
     "github:jspm/nodelibs-assert@0.1.0": {
       "assert": "npm:assert@1.3.0"

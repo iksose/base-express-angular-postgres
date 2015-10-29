@@ -1,10 +1,11 @@
 import {Component, FormBuilder, FORM_DIRECTIVES, Validators, ControlGroup, Inject, NgFor} from 'angular2/angular2';
 import {TodoModel} from './todo_model';
 import {TodoService} from './todo_service';
+import template from './todo.html!text';
 
 @Component({
     selector: 'todo',
-    templateUrl: './js/app/todo/todo.html',
+    template,
     styleUrls: ['./js/app/todo/todo.css'],
     providers: [TodoService, FormBuilder],
     directives: [FORM_DIRECTIVES, NgFor]

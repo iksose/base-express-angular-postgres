@@ -6,7 +6,7 @@
 
       <input type="text" ng-control="message" placeholder="What do you have to do?" autofocus class="todo_input" />
 
-      <button type="submit" class="todo_button">+</button>
+      <button type="submit" class="todo_button" [disabled]="!todoForm.valid">+</button>
     </form>
 
     <div id="todo_list_container">
