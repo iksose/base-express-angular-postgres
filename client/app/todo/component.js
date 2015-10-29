@@ -4,22 +4,29 @@ import {TodoService} from './todo_service';
 
 @Component({
     selector: 'todo',
-    hostInjector: [TodoService],
     templateUrl: './js/app/todo/todo.html',
     styleUrls: ['./js/app/todo/todo.css'],
     providers: [TodoService, FormBuilder],
     directives: [FORM_DIRECTIVES, NgFor]
 })
-@Inject(TodoService)
 export class TodoCmp {
-    constructor(){
+    static get parameters() {
+      return [TodoService, FormBuilder]; // you can also return just [TodoService]
+    }
+    constructor(todoService, FormBuilder){
+      this.todoService = todoService;
+      this.fb = FormBuilder;
+      this.todoForm = this.fb.group({
+           "message": ["", Validators.required]
+      });
       this.todoList = [];
+      console.log("derp", this)
     }
 
     add(message) {
         this.todo = new TodoModel(message);
 
-        this._todoService
+        this.todoService
             .add(this.todo)
             .subscribe(result => {
                 this.todoList.push(result);
@@ -28,7 +35,7 @@ export class TodoCmp {
     }
 
     remove(id) {
-        this._todoService
+        this.todoService
             .remove(id)
             .subscribe(id => {
                 this.todoList.forEach((tl, index) => {

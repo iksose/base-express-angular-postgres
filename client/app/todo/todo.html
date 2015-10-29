@@ -4,7 +4,7 @@
   <div id="todo_form_container">
     <form onsubmit="return false;" [ng-form-model]="todoForm" (submit)="add(todoForm.value.message)">
 
-      <input type="text" placeholder="What do you have to do?" autofocus class="todo_input" />
+      <input type="text" ng-control="message" placeholder="What do you have to do?" autofocus class="todo_input" />
 
       <button type="submit" class="todo_button">+</button>
     </form>
