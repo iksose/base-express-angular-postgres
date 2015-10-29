@@ -2,28 +2,28 @@ import {Component, FormBuilder, FORM_DIRECTIVES, Validators, ControlGroup, Injec
 import {TodoModel} from './todo_model';
 import {TodoService} from './todo_service';
 import template from './todo.html!text';
+// import {CanActivate} from 'angular2/router';
+// import {CanReuse} from 'angular2/src/router/interfaces';
 
 @Component({
     selector: 'todo',
     template,
     styleUrls: ['./js/app/todo/todo.css'],
-    providers: [TodoService, FormBuilder],
+    // providers: [TodoService, FormBuilder],
     directives: [FORM_DIRECTIVES, NgFor]
 })
 export class TodoCmp {
     static get parameters() {
       return [TodoService, FormBuilder]; // you can also return just [TodoService]
     }
-    constructor(todoService, FormBuilder){
-      this.todoService = todoService;
+    constructor(TodoService, FormBuilder){
+      this.todoService = TodoService;
       this.fb = FormBuilder;
       this.todoForm = this.fb.group({
            "message": ["", Validators.required]
       });
       this.todoList = [];
-      console.log("derp", this)
     }
-
     add(message) {
         this.todo = new TodoModel(message);
 
