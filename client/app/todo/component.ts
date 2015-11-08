@@ -25,6 +25,7 @@ export class TodoCmp {
     }
 
     add(message: string):void {
+      console.log("fucked")
         this.todo = new TodoModel(message);
 
         this._todoService
