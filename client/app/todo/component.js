@@ -1,33 +1,33 @@
-/// <reference path="../../typings/tsd.d.ts" />
-
 import {Component, FormBuilder, FORM_DIRECTIVES, Validators, ControlGroup, Inject, NgFor} from 'angular2/angular2';
-import {TodoModel} from './todo_model.ts';
-import {TodoService} from './todo_service.ts';
+import {TodoModel} from './todo_model';
+import {TodoService} from './todo_service';
+import template from './todo.html!text';
+// import {CanActivate} from 'angular2/router';
+// import {CanReuse} from 'angular2/src/router/interfaces';
 
 @Component({
     selector: 'todo',
-    templateUrl: './js/app/todo/todo.html',
+    template,
     styleUrls: ['./js/app/todo/todo.css'],
-    providers: [TodoService, FormBuilder],
+    // providers: [TodoService, FormBuilder],
     directives: [FORM_DIRECTIVES, NgFor]
 })
 export class TodoCmp {
-    todo: TodoModel;
-    todoForm: ControlGroup;
-    todoList: TodoModel[] = [];
-
-    constructor(@Inject(TodoService) private _todoService: TodoService,
-                @Inject(FormBuilder) fb: FormBuilder) {
-
-        this.todoForm = fb.group({
-           "message": ["", Validators.required]
-        });
+    static get parameters() {
+      return [TodoService, FormBuilder]; // you can also return just [TodoService]
     }
-
-    add(message: string):void {
+    constructor(TodoService, FormBuilder){
+      this.todoService = TodoService;
+      this.fb = FormBuilder;
+      this.todoForm = this.fb.group({
+           "message": ["", Validators.required]
+      });
+      this.todoList = [];
+    }
+    add(message) {
         this.todo = new TodoModel(message);
 
-        this._todoService
+        this.todoService
             .add(this.todo)
             .subscribe(result => {
                 this.todoList.push(result);
@@ -35,8 +35,8 @@ export class TodoCmp {
             });
     }
 
-    remove(id: number):void {
-        this._todoService
+    remove(id) {
+        this.todoService
             .remove(id)
             .subscribe(id => {
                 this.todoList.forEach((tl, index) => {

@@ -16,7 +16,7 @@ app.use(bodyParser.urlencoded({
 }))
 
 
-// app.use(controllers.index)
+app.use("/api", controllers.index)
 
 app.use("/js", express.static(__dirname + "/client/"));
 
